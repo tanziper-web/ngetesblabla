@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>✦ Myticals Web Pro ✦</title>
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Background Container -->
+<div id="bgContainer"></div>
+<canvas id="particleCanvas"></canvas>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo"><i class="fas fa-cube"></i> Myticals Web Pro</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a class="active" data-page="home"><i class="fas fa-home"></i> Home</a></li>
+    <li><a data-page="about"><i class="fas fa-info-circle"></i> About</a></li>
+    <li><a data-page="services"><i class="fas fa-server"></i> Services</a></li>
+    <li><a data-page="todo"><i class="fas fa-tasks"></i> Todo</a></li>
+    <li><a data-page="customize"><i class="fas fa-image"></i> Customize</a></li>
+    <li><a data-page="report"><i class="fas fa-flag"></i> Report Scam</a></li>
+    <li><a data-page="deploy"><i class="fas fa-cloud-upload-alt"></i> Deploy</a></li>
+    <li><a data-page="contact"><i class="fas fa-envelope"></i> Contact</a></li>
+    <li class="theme-selector">
+      <select id="themeSelect">
+        <option value="dark"><i class="fas fa-moon"></i> Dark</option>
+        <option value="light"><i class="fas fa-sun"></i> Light</option>
+        <option value="blue"><i class="fas fa-water"></i> Blue</option>
+        <option value="pink"><i class="fas fa-flower"></i> Pink</option>
+        <option value="green"><i class="fas fa-leaf"></i> Green</option>
+      </select>
+    </li>
+  </ul>
+  <button class="burger" id="burgerBtn" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ===== PAGES ===== -->
+<div class="container">
+
+  <!-- HOME -->
+  <section class="page active" id="page-home">
+    <h1><i class="fas fa-rocket"></i> Selamat datang di Myticals Web Pro</h1>
+    <p>Website super keren tanpa backend — semua berjalan di browser. Report Scam pakai EmailJS + IndexedDB.</p>
+    <div class="card-grid">
+      <div class="card"><i class="fas fa-palette"></i><h3>5 Tema Warna</h3><p>Ganti suasana sesuka hati.</p></div>
+      <div class="card"><i class="fas fa-sync-alt"></i><h3>Real-time Todo</h3><p>Task manager dengan localStorage.</p></div>
+      <div class="card"><i class="fas fa-mobile-alt"></i><h3>Responsive</h3><p>Rapi di HP, tablet, atau desktop.</p></div>
+      <div class="card"><i class="fas fa-flag"></i><h3>Report Scam</h3><p>EmailJS + IndexedDB + Export.</p></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="page" id="page-about">
+    <h1><i class="fas fa-address-card"></i> Tentang Kami</h1>
+    <p>Myticals Web Pro — dibangun tanpa framework, murni vanilla JS. Semua fitur client-side, data disimpan di IndexedDB & localStorage.</p>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="page" id="page-services">
+    <h1><i class="fas fa-cogs"></i> Layanan</h1>
+    <div class="card-grid">
+      <div class="card"><i class="fas fa-shield-alt"></i><h3>Keamanan</h3><p>Data lokal, tidak ke server.</p></div>
+      <div class="card"><i class="fas fa-chart-line"></i><h3>Optimasi</h3><p>Kode cepat dan ringan.</p></div>
+      <div class="card"><i class="fas fa-robot"></i><h3>AI Integration</h3><p>Bisa konek ke model lokal.</p></div>
+    </div>
+  </section>
+
+  <!-- TODO -->
+  <section class="page" id="page-todo">
+    <h1><i class="fas fa-list-check"></i> To-Do Ninja</h1>
+    <div class="todo-wrapper">
+      <div class="todo-form">
+        <input type="text" id="todoInput" placeholder="Tulis tugas baru..." autofocus>
+        <button id="todoAddBtn"><i class="fas fa-plus"></i> Tambah</button>
+      </div>
+      <ul class="todo-list" id="todoList"></ul>
+      <div class="todo-stats">
+        <span><i class="fas fa-list-ul"></i> Total: <strong id="totalCount">0</strong></span>
+        <span><i class="fas fa-check-circle"></i> Selesai: <strong id="doneCount">0</strong></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUSTOMIZE BG -->
+  <section class="page" id="page-customize">
+    <h1><i class="fas fa-image"></i> Kustomisasi Background</h1>
+    <p>Pilih jenis background di bawah ini.</p>
+    <div class="bg-options">
+      <div class="bg-option active" data-bgtype="default"><i class="fas fa-paint-brush"></i><h4>Default</h4><p>Warna tema.</p></div>
+      <div class="bg-option" data-bgtype="video"><i class="fas fa-video"></i><h4>Video</h4><p>URL YouTube atau file .mp4.</p></div>
+      <div class="bg-option" data-bgtype="image"><i class="fas fa-file-image"></i><h4>Gambar</h4><p>Upload dari perangkat.</p></div>
+      <div class="bg-option" data-bgtype="particle"><i class="fas fa-circle-notch"></i><h4>Partikel</h4><p>Animasi bergerak.</p></div>
+    </div>
+    <div id="bgControls" class="bg-control"></div>
+  </section>
+
+  <!-- ===== REPORT SCAM ===== -->
+  <section class="page" id="page-report">
+    <h1><i class="fas fa-flag"></i> Report Scam</h1>
+    <p>Laporkan akun mencurigakan. Laporan disimpan di IndexedDB, bisa di-export atau dikirim via EmailJS.</p>
+
+    <div class="report-wrapper">
+      <!-- Konfigurasi EmailJS -->
+      <div class="config-wrapper">
+        <h4><i class="fas fa-key"></i> Konfigurasi EmailJS</h4>
+        <div class="config-row">
+          <input type="text" id="configPublicKey" placeholder="Public Key">
+          <input type="text" id="configServiceID" placeholder="Service ID">
+          <input type="text" id="configTemplateID" placeholder="Template ID">
+          <button id="saveConfigBtn"><i class="fas fa-save"></i> Simpan</button>
+        </div>
+        <div id="configStatus" class="config-status">
+          <span id="configMsg">Isi untuk mengirim via EmailJS.</span>
+        </div>
+      </div>
+
+      <!-- Daftar Sender -->
+      <div class="form-group">
+        <label><i class="fas fa-envelope"></i> Daftar Pengirim (Sender)</label>
+        <div class="sender-list" id="senderList"></div>
+        <div class="add-sender-form">
+          <input type="email" id="newSenderInput" placeholder="Masukkan email sender...">
+          <button id="addSenderBtn"><i class="fas fa-plus-circle"></i> Add Sender</button>
+        </div>
+        <small>Sender digunakan sebagai reply-to.</small>
+      </div>
+
+      <!-- Form Report -->
+      <div class="form-group">
+        <label><i class="fas fa-user"></i> Pilih Sender</label>
+        <select id="senderSelect"><option value="">-- Pilih sender --</option></select>
+      </div>
+
+      <div class="form-group">
+        <label><i class="fas fa-bullseye"></i> Platform</label>
+        <select id="platformSelect">
+          <option value="telegram">Telegram</option>
+          <option value="binance">Binance</option>
+          <option value="monzo">Monzo</option>
+          <option value="other">Lainnya</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label><i class="fas fa-at"></i> Email Tujuan</label>
+        <input type="email" id="toEmail" placeholder="abuse@telegram.org" value="abuse@telegram.org">
+      </div>
+
+      <div class="form-group">
+        <label><i class="fas fa-heading"></i> Subject</label>
+        <input type="text" id="subjectInput" placeholder="Subject..." value="Laporan Akun Scam">
+      </div>
+
+      <div class="form-group">
+        <label><i class="fas fa-user-tag"></i> Username/ID yang Dilaporkan</label>
+        <input type="text" id="reportedUser" placeholder="Username / ID...">
+      </div>
+
+      <div class="form-group">
+        <label><i class="fas fa-file-alt"></i> Isi Laporan</label>
+        <textarea id="messageInput" placeholder="Deskripsikan...">Saya melaporkan akun ini karena terindikasi scam.</textarea>
+      </div>
+
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <button id="sendReportBtn" class="btn-submit"><i class="fas fa-paper-plane"></i> Kirim via EmailJS</button>
+        <button id="mailtoBtn" class="btn-submit" style="background:var(--text-secondary);"><i class="fas fa-envelope-open-text"></i> Buka Client Email</button>
+        <button id="exportCsvBtn" class="btn-submit" style="background:#10b981;"><i class="fas fa-file-csv"></i> Export CSV</button>
+        <button id="exportJsonBtn" class="btn-submit" style="background:#f59e0b;"><i class="fas fa-file-code"></i> Export JSON</button>
+      </div>
+
+      <!-- Status -->
+      <div id="reportStatus" class="status-msg"></div>
+    </div>
+  </section>
+
+  <!-- DEPLOY -->
+  <section class="page" id="page-deploy">
+    <h1><i class="fas fa-cloud-upload-alt"></i> Deploy Website</h1>
+    <div class="deploy-grid">
+      <div class="deploy-card">
+        <i class="fab fa-netlify"></i><h3>Netlify Drop</h3>
+        <a href="https://app.netlify.com/drop" target="_blank" class="deploy-btn"><i class="fas fa-external-link-alt"></i> Deploy ke Netlify</a>
+      </div>
+      <div class="deploy-card">
+        <i class="fab fa-vercel"></i><h3>Vercel</h3>
+        <a href="https://vercel.com/new" target="_blank" class="deploy-btn"><i class="fas fa-external-link-alt"></i> Deploy ke Vercel</a>
+      </div>
+      <div class="deploy-card">
+        <i class="fas fa-file-download"></i><h3>Download HTML</h3>
+        <button id="downloadBtn" class="deploy-btn"><i class="fas fa-download"></i> Download index.html</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="page" id="page-contact">
+    <h1><i class="fas fa-paper-plane"></i> Kontak</h1>
+    <div class="contact-info">
+      <a href="#"><i class="fab fa-instagram"></i> @arga_not_dev</a>
+      <a href="#"><i class="fab fa-github"></i> github.com/arga-not-dev</a>
+      <a href="#"><i class="fas fa-envelope"></i> arga@myticals.web</a>
+    </div>
+  </section>
+</div>
+
+<!-- ===== JAVASCRIPT MODULES ===== -->
+<script src="js/db.js"></script>
+<script src="js/main.js"></script>
+<script src="js/report.js"></script>
+</body>
+</html>
